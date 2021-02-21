@@ -21,7 +21,20 @@ public class Layout {
     public static ContainerTag header() {
         return nav().withClass("navbar navbar-expand-lg navbar-dark bg-dark fixed-top").with(
                 container(
-                        a("Taco Factory").withClass("navbar-brand").withHref(URL.HOME)
+                        a("Taco Factory").withClass("navbar-brand").withHref(URL.HOME),
+                        button().withClass("navbar-toggler").withType("button").attr("data-toggle", "collapse").attr("data-target", "#navbarResponsive").attr("aria-controls", "navbarResponsive").attr("aria-expanded", "false").attr("aria-label", "Toggle navigation").with(
+                                span().withClass("navbar-toggler-icon")
+                        ),
+                        div().withId("navbarResponsive").withClass("collapse navbar-collapse").with(
+                                ul().withClass("navbar-nav ml-auto").with(
+                                        li().withClass("nav-item active").with(
+                                                a("Home").withClass("nav-link").withHref(URL.HOME)
+                                        ),
+                                        li().withClass("nav-item active").with(
+                                                a("Design").withClass("nav-link").withHref(URL.DESIGN)
+                                        )
+                                )
+                        )
                 )
         );
     }

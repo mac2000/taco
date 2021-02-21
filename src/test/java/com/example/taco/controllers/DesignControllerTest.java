@@ -78,4 +78,12 @@ class DesignControllerTest {
                 .andExpect(content().string(containsString("Copyright © Taco Factory 2021")))
                 .andExpect(content().string(containsString("</footer>")));
     }
+
+    @Test
+    void shouldHaveHeaderMenu() throws Exception {
+        mockMvc.perform(get(URL.DESIGN))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<a class=\"nav-link\" href=\"/\">Home")))
+                .andExpect(content().string(containsString("<a class=\"nav-link\" href=\"/design\">Design")));
+    }
 }

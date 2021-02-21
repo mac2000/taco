@@ -118,4 +118,12 @@ class HomeControllerTest {
                 .andExpect(content().string(containsString("alt=\"Second slide\"")))
                 .andExpect(content().string(containsString("alt=\"Third slide\"")));
     }
+
+    @Test
+    void shouldHaveHeaderMenu() throws Exception {
+        mockMvc.perform(get(URL.HOME))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<a class=\"nav-link\" href=\"/\">Home")))
+                .andExpect(content().string(containsString("<a class=\"nav-link\" href=\"/design\">Design")));
+    }
 }
