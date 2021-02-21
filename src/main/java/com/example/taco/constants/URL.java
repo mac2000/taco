@@ -7,3 +7,4 @@ public final class URL {
     public static final String HOME = "/";
     public static final String DESIGN = "/design";
 }
+

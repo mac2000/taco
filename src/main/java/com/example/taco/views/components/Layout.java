@@ -1,6 +1,7 @@
 package com.example.taco.views.components;
 
 import com.example.taco.constants.URL;
+import com.example.taco.views.models.interfaces.WithCurrentUrl;
 import com.example.taco.views.models.interfaces.WithHeadTitle;
 import j2html.tags.ContainerTag;
 
@@ -18,7 +19,7 @@ public class Layout {
         );
     }
 
-    public static ContainerTag header() {
+    public static ContainerTag header(WithCurrentUrl withCurrentUrl) {
         return nav().withClass("navbar navbar-expand-lg navbar-dark bg-dark fixed-top").with(
                 container(
                         a("Taco Factory").withClass("navbar-brand").withHref(URL.HOME),
@@ -27,10 +28,10 @@ public class Layout {
                         ),
                         div().withId("navbarResponsive").withClass("collapse navbar-collapse").with(
                                 ul().withClass("navbar-nav ml-auto").with(
-                                        li().withClass("nav-item active").with(
+                                        li().withClasses("nav-item", iff(withCurrentUrl.getCurrentUrl().equals(URL.HOME), "active")).with(
                                                 a("Home").withClass("nav-link").withHref(URL.HOME)
                                         ),
-                                        li().withClass("nav-item active").with(
+                                        li().withClasses("nav-item", iff(withCurrentUrl.getCurrentUrl().equals(URL.DESIGN), "active")).with(
                                                 a("Design").withClass("nav-link").withHref(URL.DESIGN)
                                         )
                                 )

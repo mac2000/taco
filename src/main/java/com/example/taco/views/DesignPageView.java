@@ -14,7 +14,7 @@ public class DesignPageView implements GenericView<DesignPageViewModel> {
                 html(
                         Layout.head(model),
                         body(
-                                Layout.header(),
+                                Layout.header(model),
 
                                 Layout.footer(),
 

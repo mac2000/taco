@@ -126,4 +126,11 @@ class HomeControllerTest {
                 .andExpect(content().string(containsString("<a class=\"nav-link\" href=\"/\">Home")))
                 .andExpect(content().string(containsString("<a class=\"nav-link\" href=\"/design\">Design")));
     }
+
+    @Test
+    void shouldHaveHeaderMenuActiveItem() throws Exception {
+        mockMvc.perform(get(URL.HOME))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<li class=\"nav-item active\"><a class=\"nav-link\" href=\"/\">Home")));
+    }
 }

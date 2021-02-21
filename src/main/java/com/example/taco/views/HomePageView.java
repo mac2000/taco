@@ -18,7 +18,7 @@ public class HomePageView implements GenericView<HomePageViewModel> {
                 html(
                         Layout.head(model),
                         body(
-                                Layout.header(),
+                                Layout.header(model),
 
                                 container(
                                         row(
