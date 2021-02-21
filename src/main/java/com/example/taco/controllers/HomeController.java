@@ -1,5 +1,6 @@
 package com.example.taco.controllers;
 
+import com.example.taco.constants.Url;
 import com.example.taco.views.HomePageView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ public class HomeController {
         this.view = view;
     }
 
-    @GetMapping("/")
+    @GetMapping(Url.HOME)
     @ResponseBody
     public String getHomePage() {
         return view.render();
