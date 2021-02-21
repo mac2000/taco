@@ -20,8 +20,7 @@ class HomeControllerTest {
     @Test
     void shouldRenderHomePage() throws Exception {
         mockMvc.perform(get("/"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("hello")));
+                .andExpect(status().isOk());
     }
 
     @Test

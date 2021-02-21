@@ -87,8 +87,6 @@ public class HomePageView implements SimpleView {
                                         )
                                 ),
 
-                                h1("hello"),
-
                                 footer().withClass("py-5 bg-dark").with(
                                         div().withClass("container").with(
                                                 p("Copyright © Taco Factory 2021").withClass("m-0 text-center text-white")
