@@ -1,5 +1,6 @@
 package com.example.taco.views.components;
 
+import com.example.taco.constants.URL;
 import com.example.taco.views.models.interfaces.WithHeadTitle;
 import j2html.tags.ContainerTag;
 
@@ -14,6 +15,14 @@ public class Layout {
                 title(withHeadTitle.getHeadTitle()),
                 link().withRel("stylesheet").withHref("/vendor/bootstrap/css/bootstrap.min.css"),
                 link().withRel("stylesheet").withHref("/css/shop-homepage.css")
+        );
+    }
+
+    public static ContainerTag header() {
+        return nav().withClass("navbar navbar-expand-lg navbar-dark bg-dark fixed-top").with(
+                container(
+                        a("Taco Factory").withClass("navbar-brand").withHref(URL.HOME)
+                )
         );
     }
 

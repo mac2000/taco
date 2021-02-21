@@ -1,7 +1,6 @@
 package com.example.taco.views;
 
 import com.example.taco.annotations.View;
-import com.example.taco.constants.URL;
 import com.example.taco.views.components.Layout;
 import com.example.taco.views.models.HomePageViewModel;
 
@@ -19,11 +18,7 @@ public class HomePageView implements GenericView<HomePageViewModel> {
                 html(
                         Layout.head(model),
                         body(
-                                nav().withClass("navbar navbar-expand-lg navbar-dark bg-dark fixed-top").with(
-                                        container(
-                                                a("Taco Factory").withClass("navbar-brand").withHref(URL.HOME)
-                                        )
-                                ),
+                                Layout.header(),
 
                                 container(
                                         row(
