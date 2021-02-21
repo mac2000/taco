@@ -1,14 +1,56 @@
 package com.example.taco.views.components;
 
 import com.example.taco.constants.URL;
+import com.example.taco.views.models.interfaces.LayoutData;
 import com.example.taco.views.models.interfaces.WithCurrentUrl;
 import com.example.taco.views.models.interfaces.WithHeadTitle;
 import j2html.tags.ContainerTag;
 
 import static com.example.taco.views.components.atoms.Bootstrap.container;
+import static com.example.taco.views.components.atoms.Bootstrap.row;
 import static j2html.TagCreator.*;
 
 public class Layout {
+    public static String simple(LayoutData model, ContainerTag content) {
+        return document(
+                html(
+                        Layout.head(model),
+                        body(
+                                Layout.header(model),
+                                container(content),
+                                Layout.footer(),
+
+                                script().withSrc("/vendor/jquery/jquery.min.js"),
+                                script().withSrc("/vendor/bootstrap/js/bootstrap.bundle.min.js")
+                        )
+                )
+        );
+    }
+
+    public static String leftSidebar(LayoutData model, ContainerTag sidebar, ContainerTag content) {
+        return document(
+                html(
+                        Layout.head(model),
+                        body(
+                                Layout.header(model),
+
+                                container(
+                                        row(
+                                                div().withClass("col-lg-3").with(sidebar),
+                                                div().withClass("col-lg-9").with(content)
+                                        )
+                                ),
+
+                                Layout.footer(),
+
+                                script().withSrc("/vendor/jquery/jquery.min.js"),
+                                script().withSrc("/vendor/bootstrap/js/bootstrap.bundle.min.js")
+                        )
+                )
+        );
+    }
+
+
     public static ContainerTag head(WithHeadTitle withHeadTitle) {
         return j2html.TagCreator.head(
                 meta().withCharset("utf-8"),
