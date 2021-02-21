@@ -51,7 +51,7 @@ public class Layout {
     }
 
 
-    public static ContainerTag head(WithHeadTitle withHeadTitle) {
+    private static ContainerTag head(WithHeadTitle withHeadTitle) {
         return j2html.TagCreator.head(
                 meta().withCharset("utf-8"),
                 meta().withName("viewport").withContent("width=device-width, initial-scale=1, shrink-to-fit=no"),
@@ -61,7 +61,7 @@ public class Layout {
         );
     }
 
-    public static ContainerTag header(WithCurrentUrl withCurrentUrl) {
+    private static ContainerTag header(WithCurrentUrl withCurrentUrl) {
         return nav().withClass("navbar navbar-expand-lg navbar-dark bg-dark fixed-top").with(
                 container(
                         a("Taco Factory").withClass("navbar-brand").withHref(URL.HOME),
@@ -82,7 +82,7 @@ public class Layout {
         );
     }
 
-    public static ContainerTag footer() {
+    private static ContainerTag footer() {
         return j2html.TagCreator.footer().withClass("py-5 bg-dark").with(
                 container(
                         p("Copyright © Taco Factory 2021").withClass("m-0 text-center text-white")
