@@ -4,6 +4,8 @@ import com.example.taco.annotations.View;
 
 import java.util.Arrays;
 
+import static com.example.taco.views.components.atoms.Bootstrap.container;
+import static com.example.taco.views.components.atoms.Bootstrap.row;
 import static j2html.TagCreator.*;
 
 @View
@@ -21,13 +23,13 @@ public class HomePageView implements SimpleView {
                         ),
                         body(
                                 nav().withClass("navbar navbar-expand-lg navbar-dark bg-dark fixed-top").with(
-                                        div().withClass("container").with(
+                                        container(
                                                 a("Taco Factory").withClass("navbar-brand").withHref("/")
                                         )
                                 ),
 
-                                div().withClass("container").with(
-                                        div().withClass("row").with(
+                                container(
+                                        row(
                                                 div().withClass("col-lg-3").with(
                                                         h1("Taco Factory").withClass("my-4"),
                                                         div().withClass("list-group").with(
@@ -63,7 +65,7 @@ public class HomePageView implements SimpleView {
                                                                         span("Next").withClass("sr-only")
                                                                 )
                                                         ),
-                                                        div().withClass("row").with(
+                                                        row(
                                                                 each(Arrays.asList("Item One", "Item Two", "Item Three", "Item Four", "Item Five", "Item Six"), name -> div().withClass("col-lg-4 col-md-6 mb-4").with(
                                                                         div().withClass("card h-100").with(
                                                                                 a().withHref("#").with(
@@ -88,7 +90,7 @@ public class HomePageView implements SimpleView {
                                 ),
 
                                 footer().withClass("py-5 bg-dark").with(
-                                        div().withClass("container").with(
+                                        container(
                                                 p("Copyright © Taco Factory 2021").withClass("m-0 text-center text-white")
                                         )
                                 ),

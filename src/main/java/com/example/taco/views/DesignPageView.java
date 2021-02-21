@@ -2,6 +2,7 @@ package com.example.taco.views;
 
 import com.example.taco.annotations.View;
 
+import static com.example.taco.views.components.atoms.Bootstrap.container;
 import static j2html.TagCreator.*;
 
 @View
@@ -19,13 +20,13 @@ public class DesignPageView implements SimpleView {
                         ),
                         body(
                                 nav().withClass("navbar navbar-expand-lg navbar-dark bg-dark fixed-top").with(
-                                        div().withClass("container").with(
+                                        container(
                                                 a("Taco Factory").withClass("navbar-brand").withHref("/")
                                         )
                                 ),
 
                                 footer().withClass("py-5 bg-dark").with(
-                                        div().withClass("container").with(
+                                        container(
                                                 p("Copyright © Taco Factory 2021").withClass("m-0 text-center text-white")
                                         )
                                 ),
