@@ -1,6 +1,7 @@
 package com.example.taco.views;
 
 import com.example.taco.annotations.View;
+import com.example.taco.constants.URL;
 
 import java.util.Arrays;
 
@@ -24,7 +25,7 @@ public class HomePageView implements SimpleView {
                         body(
                                 nav().withClass("navbar navbar-expand-lg navbar-dark bg-dark fixed-top").with(
                                         container(
-                                                a("Taco Factory").withClass("navbar-brand").withHref("/")
+                                                a("Taco Factory").withClass("navbar-brand").withHref(URL.HOME)
                                         )
                                 ),
 
