@@ -1,23 +1,19 @@
 package com.example.taco.views;
 
 import com.example.taco.annotations.View;
+import com.example.taco.views.components.Layout;
+import com.example.taco.views.models.DesignPageViewModel;
 
 import static com.example.taco.views.components.atoms.Bootstrap.container;
 import static j2html.TagCreator.*;
 
 @View
-public class DesignPageView implements SimpleView {
+public class DesignPageView implements GenericView<DesignPageViewModel> {
     @Override
-    public String render() {
+    public String render(DesignPageViewModel model) {
         return document(
                 html(
-                        head(
-                                meta().withCharset("utf-8"),
-                                meta().withName("viewport").withContent("width=device-width, initial-scale=1, shrink-to-fit=no"),
-                                title("Design - Taco Factory"),
-                                link().withRel("stylesheet").withHref("/vendor/bootstrap/css/bootstrap.min.css"),
-                                link().withRel("stylesheet").withHref("/css/shop-homepage.css")
-                        ),
+                        Layout.head(model),
                         body(
                                 nav().withClass("navbar navbar-expand-lg navbar-dark bg-dark fixed-top").with(
                                         container(
@@ -25,11 +21,7 @@ public class DesignPageView implements SimpleView {
                                         )
                                 ),
 
-                                footer().withClass("py-5 bg-dark").with(
-                                        container(
-                                                p("Copyright © Taco Factory 2021").withClass("m-0 text-center text-white")
-                                        )
-                                ),
+                                Layout.footer(),
 
                                 script().withSrc("/vendor/jquery/jquery.min.js"),
                                 script().withSrc("/vendor/bootstrap/js/bootstrap.bundle.min.js")
