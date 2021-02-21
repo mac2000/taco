@@ -1,6 +1,6 @@
 package com.example.taco.controllers;
 
-import com.example.taco.constants.Url;
+import com.example.taco.constants.URL;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,34 +20,34 @@ class HomeControllerTest {
 
     @Test
     void shouldRenderHomePage() throws Exception {
-        mockMvc.perform(get(Url.HOME))
+        mockMvc.perform(get(URL.HOME))
                 .andExpect(status().isOk());
     }
 
     @Test
     void shouldHaveMetaCharset() throws Exception {
-        mockMvc.perform(get(Url.HOME))
+        mockMvc.perform(get(URL.HOME))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<meta charset=\"utf-8\">")));
     }
 
     @Test
     void shouldHaveMetaViewport() throws Exception {
-        mockMvc.perform(get(Url.HOME))
+        mockMvc.perform(get(URL.HOME))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">")));
     }
 
     @Test
     void shouldHaveHeadTitle() throws Exception {
-        mockMvc.perform(get(Url.HOME))
+        mockMvc.perform(get(URL.HOME))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<title>Home - Taco Factory</title>")));
     }
 
     @Test
     void shouldHaveStylesConnected() throws Exception {
-        mockMvc.perform(get(Url.HOME))
+        mockMvc.perform(get(URL.HOME))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<link rel=\"stylesheet\" href=\"/vendor/bootstrap/css/bootstrap.min.css\">")))
                 .andExpect(content().string(containsString("<link rel=\"stylesheet\" href=\"/css/shop-homepage.css\">")));
@@ -55,7 +55,7 @@ class HomeControllerTest {
 
     @Test
     void shouldHaveScriptsConnected() throws Exception {
-        mockMvc.perform(get(Url.HOME))
+        mockMvc.perform(get(URL.HOME))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<script src=\"/vendor/jquery/jquery.min.js\"></script>")))
                 .andExpect(content().string(containsString("<script src=\"/vendor/bootstrap/js/bootstrap.bundle.min.js\"></script>")));
@@ -63,7 +63,7 @@ class HomeControllerTest {
 
     @Test
     void shouldHaveHeader() throws Exception {
-        mockMvc.perform(get(Url.HOME))
+        mockMvc.perform(get(URL.HOME))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark fixed-top\">")))
                 .andExpect(content().string(containsString("<a class=\"navbar-brand\" href=\"/\">Taco Factory</a>")))
@@ -72,7 +72,7 @@ class HomeControllerTest {
 
     @Test
     void shouldHaveFooter() throws Exception {
-        mockMvc.perform(get(Url.HOME))
+        mockMvc.perform(get(URL.HOME))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<footer class=\"py-5 bg-dark\">")))
                 .andExpect(content().string(containsString("Copyright © Taco Factory 2021")))
@@ -81,7 +81,7 @@ class HomeControllerTest {
 
     @Test
     void shouldHaveSeoHeader() throws Exception {
-        mockMvc.perform(get(Url.HOME))
+        mockMvc.perform(get(URL.HOME))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<h1 class=\"my-4\">")))
                 .andExpect(content().string(containsString("Taco Factory")))
@@ -90,7 +90,7 @@ class HomeControllerTest {
 
     @Test
     void shouldHaveDemoCategories() throws Exception {
-        mockMvc.perform(get(Url.HOME))
+        mockMvc.perform(get(URL.HOME))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<a class=\"list-group-item\" href=\"#\">Category 1</a>")))
                 .andExpect(content().string(containsString("<a class=\"list-group-item\" href=\"#\">Category 2</a>")))
@@ -99,7 +99,7 @@ class HomeControllerTest {
 
     @Test
     void shouldHaveDemoItems() throws Exception {
-        mockMvc.perform(get(Url.HOME))
+        mockMvc.perform(get(URL.HOME))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<a href=\"#\">Item One</a>")))
                 .andExpect(content().string(containsString("<a href=\"#\">Item Two</a>")))
@@ -111,7 +111,7 @@ class HomeControllerTest {
 
     @Test
     void shouldHaveDemoCarousel() throws Exception {
-        mockMvc.perform(get(Url.HOME))
+        mockMvc.perform(get(URL.HOME))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("id=\"carouselExampleIndicators\"")))
                 .andExpect(content().string(containsString("alt=\"First slide\"")))

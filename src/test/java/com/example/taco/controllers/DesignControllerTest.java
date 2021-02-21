@@ -1,6 +1,6 @@
 package com.example.taco.controllers;
 
-import com.example.taco.constants.Url;
+import com.example.taco.constants.URL;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,13 +20,13 @@ class DesignControllerTest {
 
     @Test
     void shouldRenderDesignPage() throws Exception {
-        mockMvc.perform(get(Url.DESIGN))
+        mockMvc.perform(get(URL.DESIGN))
                 .andExpect(status().isOk());
     }
 
     @Test
     void shouldHaveMetaCharset() throws Exception {
-        mockMvc.perform(get(Url.DESIGN))
+        mockMvc.perform(get(URL.DESIGN))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<meta charset=\"utf-8\">")));
     }
