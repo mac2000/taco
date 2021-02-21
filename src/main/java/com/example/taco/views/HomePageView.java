@@ -15,7 +15,7 @@ public class HomePageView implements SimpleView {
                         head(
                                 meta().withCharset("utf-8"),
                                 meta().withName("viewport").withContent("width=device-width, initial-scale=1, shrink-to-fit=no"),
-                                title("Taco Factory"),
+                                title("Home - Taco Factory"),
                                 link().withRel("stylesheet").withHref("/vendor/bootstrap/css/bootstrap.min.css"),
                                 link().withRel("stylesheet").withHref("/css/shop-homepage.css")
                         ),

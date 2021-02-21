@@ -41,7 +41,7 @@ class HomeControllerTest {
     void shouldHaveHeadTitle() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>Taco Factory</title>")));
+                .andExpect(content().string(containsString("<title>Home - Taco Factory</title>")));
     }
 
     @Test
