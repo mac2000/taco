@@ -11,7 +11,21 @@ import static com.example.taco.views.components.atoms.Bootstrap.row;
 import static j2html.TagCreator.*;
 
 public class Layout {
+    private Layout() {
+    }
+
     public static String simple(LayoutData model, ContainerTag content) {
+        return layout(model, content);
+    }
+
+    public static String leftSidebar(LayoutData model, ContainerTag sidebar, ContainerTag content) {
+        return layout(model, row(
+                div().withClass("col-lg-3").with(sidebar),
+                div().withClass("col-lg-9").with(content)
+        ));
+    }
+
+    private static String layout(LayoutData model, ContainerTag content) {
         return document(
                 html(
                         Layout.head(model),
@@ -19,30 +33,6 @@ public class Layout {
                                 Layout.header(model),
                                 container(content),
                                 Layout.footer(),
-
-                                script().withSrc("/vendor/jquery/jquery.min.js"),
-                                script().withSrc("/vendor/bootstrap/js/bootstrap.bundle.min.js")
-                        )
-                )
-        );
-    }
-
-    public static String leftSidebar(LayoutData model, ContainerTag sidebar, ContainerTag content) {
-        return document(
-                html(
-                        Layout.head(model),
-                        body(
-                                Layout.header(model),
-
-                                container(
-                                        row(
-                                                div().withClass("col-lg-3").with(sidebar),
-                                                div().withClass("col-lg-9").with(content)
-                                        )
-                                ),
-
-                                Layout.footer(),
-
                                 script().withSrc("/vendor/jquery/jquery.min.js"),
                                 script().withSrc("/vendor/bootstrap/js/bootstrap.bundle.min.js")
                         )

@@ -1,7 +1,6 @@
 package com.example.taco.controllers;
 
 import com.example.taco.constants.URL;
-import com.example.taco.views.components.Layout;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,9 +17,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class HomeControllerTest {
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private Layout layout;
 
     @Test
     void shouldRenderHomePage() throws Exception {
