@@ -1,5 +1,6 @@
 package com.example.taco.views.components;
 
+import com.example.taco.annotations.View;
 import com.example.taco.constants.URL;
 import com.example.taco.views.models.interfaces.LayoutData;
 import com.example.taco.views.models.interfaces.WithCurrentUrl;
@@ -10,21 +11,8 @@ import static com.example.taco.views.components.atoms.Bootstrap.container;
 import static com.example.taco.views.components.atoms.Bootstrap.row;
 import static j2html.TagCreator.*;
 
+@View
 public class Layout {
-    private Layout() {
-    }
-
-    public static String simple(LayoutData model, ContainerTag content) {
-        return layout(model, content);
-    }
-
-    public static String leftSidebar(LayoutData model, ContainerTag sidebar, ContainerTag content) {
-        return layout(model, row(
-                div().withClass("col-lg-3").with(sidebar),
-                div().withClass("col-lg-9").with(content)
-        ));
-    }
-
     private static String layout(LayoutData model, ContainerTag content) {
         return document(
                 html(
@@ -40,6 +28,16 @@ public class Layout {
         );
     }
 
+    public String simple(LayoutData model, ContainerTag content) {
+        return layout(model, content);
+    }
+
+    public String leftSidebar(LayoutData model, ContainerTag sidebar, ContainerTag content) {
+        return simple(model, row(
+                div().withClass("col-lg-3").with(sidebar),
+                div().withClass("col-lg-9").with(content)
+        ));
+    }
 
     private static ContainerTag head(WithHeadTitle withHeadTitle) {
         return j2html.TagCreator.head(

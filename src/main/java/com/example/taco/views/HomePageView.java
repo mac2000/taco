@@ -1,19 +1,26 @@
 package com.example.taco.views;
 
 import com.example.taco.annotations.View;
+import com.example.taco.views.components.Layout;
+import com.example.taco.views.interfaces.GenericView;
 import com.example.taco.views.models.HomePageViewModel;
 
 import java.util.Arrays;
 
-import static com.example.taco.views.components.Layout.leftSidebar;
 import static com.example.taco.views.components.atoms.Bootstrap.row;
 import static j2html.TagCreator.*;
 
 @View
 public class HomePageView implements GenericView<HomePageViewModel> {
+    private final Layout layout;
+
+    public HomePageView(Layout layout) {
+        this.layout = layout;
+    }
+
     @Override
     public String render(HomePageViewModel model) {
-        return leftSidebar(model,
+        return layout.leftSidebar(model,
                 div(
                         h1("Taco Factory").withClass("my-4"),
                         div().withClass("list-group").with(
