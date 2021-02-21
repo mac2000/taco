@@ -1,12 +1,21 @@
 package com.example.taco.controllers;
 
+import com.example.taco.views.DesignPageView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class DesignController {
+    private final DesignPageView view;
+
+    public DesignController(DesignPageView view) {
+        this.view = view;
+    }
+
     @GetMapping("/design")
+    @ResponseBody
     public String getDesignPage() {
-        return "";
+        return view.render();
     }
 }
