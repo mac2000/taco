@@ -5,7 +5,10 @@ import com.example.taco.annotations.View;
 import com.example.taco.views.components.Layout;
 import com.example.taco.views.interfaces.GenericView;
 import com.example.taco.views.models.DesignPageViewModel;
+import j2html.tags.ContainerTag;
 import org.springframework.http.HttpMethod;
+
+import java.util.List;
 
 import static j2html.TagCreator.*;
 
@@ -22,66 +25,11 @@ public class DesignPageView implements GenericView<DesignPageViewModel> {
         return layout.simple(model,
                 form().withMethod(HttpMethod.POST.name().toLowerCase()).with(
                         div().withClass("grid").with(
-                                div().withId("wraps").withClass("ingredient-group").with(
-                                        h3("Designate your wrap:"),
-                                        each(model.filterByType(Ingredient.Type.WRAP), ingredient -> div(
-                                                label(
-                                                        input()
-                                                                .withName("ingredients")
-                                                                .withType("checkbox")
-                                                                .withValue(ingredient.getId()),
-                                                        text(ingredient.getName())
-                                                )
-                                        ))
-                                ),
-                                div().withId("proteins").withClass("ingredient-group").with(
-                                        h3("Pick your protein:"),
-                                        each(model.filterByType(Ingredient.Type.PROTEIN), ingredient -> div(
-                                                label(
-                                                        input()
-                                                                .withName("ingredients")
-                                                                .withType("checkbox")
-                                                                .withValue(ingredient.getId()),
-                                                        text(ingredient.getName())
-                                                )
-                                        ))
-                                ),
-                                div().withId("cheeses").withClass("ingredient-group").with(
-                                        h3("Choose your cheese:"),
-                                        each(model.filterByType(Ingredient.Type.CHEESE), ingredient -> div(
-                                                label(
-                                                        input()
-                                                                .withName("ingredients")
-                                                                .withType("checkbox")
-                                                                .withValue(ingredient.getId()),
-                                                        text(ingredient.getName())
-                                                )
-                                        ))
-                                ),
-                                div().withId("veggies").withClass("ingredient-group").with(
-                                        h3("Determine your veggies:"),
-                                        each(model.filterByType(Ingredient.Type.VEGGIES), ingredient -> div(
-                                                label(
-                                                        input()
-                                                                .withName("ingredients")
-                                                                .withType("checkbox")
-                                                                .withValue(ingredient.getId()),
-                                                        text(ingredient.getName())
-                                                )
-                                        ))
-                                ),
-                                div().withId("sauces").withClass("ingredient-group").with(
-                                        h3("Select your sauce:"),
-                                        each(model.filterByType(Ingredient.Type.SAUCE), ingredient -> div(
-                                                label(
-                                                        input()
-                                                                .withName("ingredients")
-                                                                .withType("checkbox")
-                                                                .withValue(ingredient.getId()),
-                                                        text(ingredient.getName())
-                                                )
-                                        ))
-                                ),
+                                renderCheckboxesBlock("wraps", "Designate your wrap:", model.filterByType(Ingredient.Type.WRAP)),
+                                renderCheckboxesBlock("proteins", "Pick your protein:", model.filterByType(Ingredient.Type.PROTEIN)),
+                                renderCheckboxesBlock("cheeses", "Choose your cheese:", model.filterByType(Ingredient.Type.CHEESE)),
+                                renderCheckboxesBlock("veggies", "Determine your veggies:", model.filterByType(Ingredient.Type.VEGGIES)),
+                                renderCheckboxesBlock("sauces", "Select your sauce:", model.filterByType(Ingredient.Type.SAUCE)),
                                 div(
                                         h3("Name your taco creation:"),
                                         input()
@@ -93,6 +41,21 @@ public class DesignPageView implements GenericView<DesignPageViewModel> {
                                 )
                         )
                 )
+        );
+    }
+
+    private ContainerTag renderCheckboxesBlock(String id, String title, List<Ingredient> ingredients) {
+        return div().withId(id).withClass("ingredient-group").with(
+                h3(title),
+                each(ingredients, ingredient -> div(
+                        label(
+                                input()
+                                        .withName("ingredients")
+                                        .withType("checkbox")
+                                        .withValue(ingredient.getId()),
+                                text(ingredient.getName())
+                        )
+                ))
         );
     }
 }
