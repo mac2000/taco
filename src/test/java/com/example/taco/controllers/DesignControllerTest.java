@@ -93,4 +93,19 @@ class DesignControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<li class=\"nav-item active\"><a class=\"nav-link\" href=\"/design\">Design")));
     }
+
+    @Test
+    void shouldHaveForm() throws Exception {
+        mockMvc.perform(get(URL.DESIGN))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<form method=\"post\">")))
+                .andExpect(content().string(containsString("<div id=\"wraps\" class=\"ingredient-group\">")))
+                .andExpect(content().string(containsString("<h3>Designate your wrap:</h3>")))
+                .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"FLTO\">")))
+                .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"COTO\">")))
+                .andExpect(content().string(containsString("<div id=\"proteins\" class=\"ingredient-group\">")))
+                .andExpect(content().string(containsString("<h3>Pick your protein:</h3>")))
+                .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"GRBF\">")))
+                .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"CARN\">")));
+    }
 }
