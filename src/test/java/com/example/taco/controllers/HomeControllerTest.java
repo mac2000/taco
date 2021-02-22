@@ -1,17 +1,23 @@
 package com.example.taco.controllers;
 
 import com.codeborne.selenide.WebDriverRunner;
+import com.example.taco.Taco;
 import com.example.taco.constants.URL;
+import com.example.taco.services.interfaces.TacoServiceInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -22,6 +28,9 @@ class HomeControllerTest {
     @Autowired
     private WebDriver webDriver;
 
+    @MockBean
+    private TacoServiceInterface tacoService;
+
     @BeforeEach
     public void setup() {
         WebDriverRunner.setWebDriver(webDriver);
@@ -29,6 +38,15 @@ class HomeControllerTest {
 
     @Test
     void shouldRenderHomePage() {
+        when(tacoService.findAll()).thenReturn(List.of(
+                Taco.builder().id("abcr").name("All Butter Croissant").price(75).build(),
+                Taco.builder().id("ccr").name("Chocolate Croissant").price(95).build(),
+                Taco.builder().id("b").name("Fresh Baguette").price(160).build(),
+                Taco.builder().id("rv").name("Red Velvet").price(395).build(),
+                Taco.builder().id("vs").name("Victoria Sponge").price(545).build(),
+                Taco.builder().id("cc").name("Carrot Cake").price(345).build()
+        ));
+
         open("http://localhost/");
 
         $$("meta").find(attribute("charset", "utf-8")).should(exist);
@@ -45,12 +63,12 @@ class HomeControllerTest {
         $$("a.list-group-item").findBy(text("Category 2")).should(exist);
         $$("a.list-group-item").findBy(text("Category 3")).should(exist);
 
-        $$(".card .card-body .card-title a").findBy(text("Item One")).should(exist);
-        $$(".card .card-body .card-title a").findBy(text("Item Two")).should(exist);
-        $$(".card .card-body .card-title a").findBy(text("Item Three")).should(exist);
-        $$(".card .card-body .card-title a").findBy(text("Item Four")).should(exist);
-        $$(".card .card-body .card-title a").findBy(text("Item Five")).should(exist);
-        $$(".card .card-body .card-title a").findBy(text("Item Six")).should(exist);
+        $$(".card .card-body .card-title a").findBy(text("All Butter Croissant")).should(exist);
+        $$(".card .card-body .card-title a").findBy(text("Chocolate Croissant")).should(exist);
+        $$(".card .card-body .card-title a").findBy(text("Fresh Baguette")).should(exist);
+        $$(".card .card-body .card-title a").findBy(text("Red Velvet")).should(exist);
+        $$(".card .card-body .card-title a").findBy(text("Victoria Sponge")).should(exist);
+        $$(".card .card-body .card-title a").findBy(text("Carrot Cake")).should(exist);
 
         $("#carouselExampleIndicators").should(exist);
         $$("#carouselExampleIndicators img").findBy(attribute("alt", "First slide")).should(exist);

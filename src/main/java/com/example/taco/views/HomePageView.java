@@ -5,8 +5,6 @@ import com.example.taco.views.components.Layout;
 import com.example.taco.views.interfaces.GenericView;
 import com.example.taco.views.models.HomePageViewModel;
 
-import java.util.Arrays;
-
 import static com.example.taco.views.components.atoms.Bootstrap.row;
 import static j2html.TagCreator.*;
 
@@ -57,16 +55,16 @@ public class HomePageView implements GenericView<HomePageViewModel> {
                                 )
                         ),
                         row(
-                                each(Arrays.asList("Item One", "Item Two", "Item Three", "Item Four", "Item Five", "Item Six"), name -> div().withClass("col-lg-4 col-md-6 mb-4").with(
+                                each(model.getTacos(), taco -> div().withClass("col-lg-4 col-md-6 mb-4").with(
                                         div().withClass("card h-100").with(
                                                 a().withHref("#").with(
                                                         img().withClass("card-img-top").withAlt("").withSrc("http://placehold.it/700x400")
                                                 ),
                                                 div().withClass("card-body").with(
                                                         h4().withClass("card-title").with(
-                                                                a(name).withHref("#")
+                                                                a(taco.getName()).withHref("#")
                                                         ),
-                                                        h5("$24.99"),
+                                                        h5("£" + (taco.getPrice() / 100)),
                                                         p("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!").withClass("card-text")
 
                                                 ),
