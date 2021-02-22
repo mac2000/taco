@@ -1,17 +1,17 @@
 package com.example.taco.controllers;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.example.taco.constants.URL;
-import com.example.taco.views.components.Layout;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -20,123 +20,46 @@ class HomeControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private Layout layout;
+    private WebDriver webDriver;
 
-    @Test
-    void shouldRenderHomePage() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk());
-
-
+    @BeforeEach
+    public void setup() {
+        WebDriverRunner.setWebDriver(webDriver);
     }
 
     @Test
-    void shouldHaveMetaCharset() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<meta charset=\"utf-8\">")));
-    }
+    void shouldRenderHomePage() {
+        open("http://localhost/");
 
-    @Test
-    void shouldHaveMetaViewport() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">")));
-    }
+        $$("meta").find(attribute("charset", "utf-8")).should(exist);
+        $$("meta").find(attribute("name", "viewport")).shouldHave(attribute("content", "width=device-width, initial-scale=1, shrink-to-fit=no"));
+        $$("link").filter(attribute("rel", "stylesheet")).find(attribute("href", "http://localhost/vendor/bootstrap/css/bootstrap.min.css")).should(exist);
+        $$("link").filter(attribute("rel", "stylesheet")).find(attribute("href", "http://localhost/css/shop-homepage.css")).should(exist);
+        $$("script").find(attribute("src", "http://localhost/vendor/jquery/jquery.min.js")).should(exist);
+        $$("script").find(attribute("src", "http://localhost/vendor/bootstrap/js/bootstrap.bundle.min.js")).should(exist);
+        $(".navbar .navbar-brand").shouldHave(text("Taco Factory"));
+        $("footer").shouldHave(text("Copyright © Taco Factory 2021"));
+        $("h1").shouldHave(text("Taco Factory"));
 
-    @Test
-    void shouldHaveHeadTitle() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>Home - Taco Factory</title>")));
-    }
+        $$("a.list-group-item").findBy(text("Category 1")).should(exist);
+        $$("a.list-group-item").findBy(text("Category 2")).should(exist);
+        $$("a.list-group-item").findBy(text("Category 3")).should(exist);
 
-    @Test
-    void shouldHaveStylesConnected() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<link rel=\"stylesheet\" href=\"/vendor/bootstrap/css/bootstrap.min.css\">")))
-                .andExpect(content().string(containsString("<link rel=\"stylesheet\" href=\"/css/shop-homepage.css\">")));
-    }
+        $$(".card .card-body .card-title a").findBy(text("Item One")).should(exist);
+        $$(".card .card-body .card-title a").findBy(text("Item Two")).should(exist);
+        $$(".card .card-body .card-title a").findBy(text("Item Three")).should(exist);
+        $$(".card .card-body .card-title a").findBy(text("Item Four")).should(exist);
+        $$(".card .card-body .card-title a").findBy(text("Item Five")).should(exist);
+        $$(".card .card-body .card-title a").findBy(text("Item Six")).should(exist);
 
-    @Test
-    void shouldHaveScriptsConnected() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<script src=\"/vendor/jquery/jquery.min.js\"></script>")))
-                .andExpect(content().string(containsString("<script src=\"/vendor/bootstrap/js/bootstrap.bundle.min.js\"></script>")));
-    }
+        $("#carouselExampleIndicators").should(exist);
+        $$("#carouselExampleIndicators img").findBy(attribute("alt", "First slide")).should(exist);
+        $$("#carouselExampleIndicators img").findBy(attribute("alt", "Second slide")).should(exist);
+        $$("#carouselExampleIndicators img").findBy(attribute("alt", "Third slide")).should(exist);
 
-    @Test
-    void shouldHaveHeader() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark fixed-top\">")))
-                .andExpect(content().string(containsString("<a class=\"navbar-brand\" href=\"/\">Taco Factory</a>")))
-                .andExpect(content().string(containsString("</nav>")));
-    }
+        $$(".navbar a.nav-link").filterBy(attribute("href", "http://localhost" + URL.HOME)).findBy(text("Home")).should(exist);
+        $$(".navbar a.nav-link").filterBy(attribute("href", "http://localhost" + URL.DESIGN)).findBy(text("Design")).should(exist);
 
-    @Test
-    void shouldHaveFooter() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<footer class=\"py-5 bg-dark\">")))
-                .andExpect(content().string(containsString("Copyright © Taco Factory 2021")))
-                .andExpect(content().string(containsString("</footer>")));
-    }
-
-    @Test
-    void shouldHaveSeoHeader() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<h1 class=\"my-4\">")))
-                .andExpect(content().string(containsString("Taco Factory")))
-                .andExpect(content().string(containsString("</h1>")));
-    }
-
-    @Test
-    void shouldHaveDemoCategories() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<a class=\"list-group-item\" href=\"#\">Category 1</a>")))
-                .andExpect(content().string(containsString("<a class=\"list-group-item\" href=\"#\">Category 2</a>")))
-                .andExpect(content().string(containsString("<a class=\"list-group-item\" href=\"#\">Category 3</a>")));
-    }
-
-    @Test
-    void shouldHaveDemoItems() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<a href=\"#\">Item One</a>")))
-                .andExpect(content().string(containsString("<a href=\"#\">Item Two</a>")))
-                .andExpect(content().string(containsString("<a href=\"#\">Item Three</a>")))
-                .andExpect(content().string(containsString("<a href=\"#\">Item Four</a>")))
-                .andExpect(content().string(containsString("<a href=\"#\">Item Five</a>")))
-                .andExpect(content().string(containsString("<a href=\"#\">Item Six</a>")));
-    }
-
-    @Test
-    void shouldHaveDemoCarousel() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("id=\"carouselExampleIndicators\"")))
-                .andExpect(content().string(containsString("alt=\"First slide\"")))
-                .andExpect(content().string(containsString("alt=\"Second slide\"")))
-                .andExpect(content().string(containsString("alt=\"Third slide\"")));
-    }
-
-    @Test
-    void shouldHaveHeaderMenu() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<a class=\"nav-link\" href=\"/\">Home")))
-                .andExpect(content().string(containsString("<a class=\"nav-link\" href=\"/design\">Design")));
-    }
-
-    @Test
-    void shouldHaveHeaderMenuActiveItem() throws Exception {
-        mockMvc.perform(get(URL.HOME))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<li class=\"nav-item active\"><a class=\"nav-link\" href=\"/\">Home")));
+        $(".navbar .nav-item.active a.nav-link").shouldHave(text("Home"));
     }
 }

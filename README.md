@@ -11,6 +11,10 @@ Few minor differences here:
 - Added `Spring Boot DevTools`, `Lombok`, `Spring Configuration Processor`
 - Going to use [j2html](https://j2html.com/) as rendering engine - hopefully will achieve strongly typed views 💪
 
+# Building the Catalog
+
+Instead of htmlunit going to use selenide which gives way better experience.
+
 # TODO
 
 ## Rendering ContainerTag
@@ -18,6 +22,7 @@ Few minor differences here:
 Wondering if it is possible instead of
 
 ```java
+
 @Controller
 public class MyAwesomeController {
     @GetMapping("/")

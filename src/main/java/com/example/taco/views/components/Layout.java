@@ -6,12 +6,14 @@ import com.example.taco.views.models.interfaces.LayoutData;
 import com.example.taco.views.models.interfaces.WithCurrentUrl;
 import com.example.taco.views.models.interfaces.WithHeadTitle;
 import j2html.tags.ContainerTag;
+import lombok.extern.slf4j.Slf4j;
 
 import static com.example.taco.views.components.atoms.Bootstrap.container;
 import static com.example.taco.views.components.atoms.Bootstrap.row;
 import static j2html.TagCreator.*;
 
 @View
+@Slf4j
 public class Layout {
     private static String layout(LayoutData model, ContainerTag content) {
         return document(
@@ -50,6 +52,7 @@ public class Layout {
     }
 
     private static ContainerTag header(WithCurrentUrl withCurrentUrl) {
+        log.info("building header for {} == {}", withCurrentUrl.getCurrentUrl(), URL.HOME);
         return nav().withClass("navbar navbar-expand-lg navbar-dark bg-dark fixed-top").with(
                 container(
                         a("Taco Factory").withClass("navbar-brand").withHref(URL.HOME),
