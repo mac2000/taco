@@ -45,6 +45,51 @@ public class DesignPageView implements GenericView<DesignPageViewModel> {
                                                         text(ingredient.getName())
                                                 )
                                         ))
+                                ),
+                                div().withId("cheeses").withClass("ingredient-group").with(
+                                        h3("Choose your cheese:"),
+                                        each(model.filterByType(Ingredient.Type.CHEESE), ingredient -> div(
+                                                label(
+                                                        input()
+                                                                .withName("ingredients")
+                                                                .withType("checkbox")
+                                                                .withValue(ingredient.getId()),
+                                                        text(ingredient.getName())
+                                                )
+                                        ))
+                                ),
+                                div().withId("veggies").withClass("ingredient-group").with(
+                                        h3("Determine your veggies:"),
+                                        each(model.filterByType(Ingredient.Type.VEGGIES), ingredient -> div(
+                                                label(
+                                                        input()
+                                                                .withName("ingredients")
+                                                                .withType("checkbox")
+                                                                .withValue(ingredient.getId()),
+                                                        text(ingredient.getName())
+                                                )
+                                        ))
+                                ),
+                                div().withId("sauces").withClass("ingredient-group").with(
+                                        h3("Select your sauce:"),
+                                        each(model.filterByType(Ingredient.Type.SAUCE), ingredient -> div(
+                                                label(
+                                                        input()
+                                                                .withName("ingredients")
+                                                                .withType("checkbox")
+                                                                .withValue(ingredient.getId()),
+                                                        text(ingredient.getName())
+                                                )
+                                        ))
+                                ),
+                                div(
+                                        h3("Name your taco creation:"),
+                                        input()
+                                                .withName("name")
+                                                .withType("text")
+                                ),
+                                div(
+                                        button("Submit your taco")
                                 )
                         )
                 )

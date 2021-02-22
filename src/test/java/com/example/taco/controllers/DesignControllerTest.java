@@ -106,6 +106,21 @@ class DesignControllerTest {
                 .andExpect(content().string(containsString("<div id=\"proteins\" class=\"ingredient-group\">")))
                 .andExpect(content().string(containsString("<h3>Pick your protein:</h3>")))
                 .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"GRBF\">")))
-                .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"CARN\">")));
+                .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"CARN\">")))
+                .andExpect(content().string(containsString("<div id=\"cheeses\" class=\"ingredient-group\">")))
+                .andExpect(content().string(containsString("<h3>Choose your cheese:</h3>")))
+                .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"CHED\">")))
+                .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"JACK\">")))
+                .andExpect(content().string(containsString("<div id=\"veggies\" class=\"ingredient-group\">")))
+                .andExpect(content().string(containsString("<h3>Determine your veggies:</h3>")))
+                .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"TMTO\">")))
+                .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"LETC\">")))
+                .andExpect(content().string(containsString("<div id=\"sauces\" class=\"ingredient-group\">")))
+                .andExpect(content().string(containsString("<h3>Select your sauce:</h3>")))
+                .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"SLSA\">")))
+                .andExpect(content().string(containsString("<input name=\"ingredients\" type=\"checkbox\" value=\"SRCR\">")))
+                .andExpect(content().string(containsString("<h3>Name your taco creation:</h3>")))
+                .andExpect(content().string(containsString("<input name=\"name\" type=\"text\">")))
+                .andExpect(content().string(containsString("<button>Submit your taco</button>")));
     }
 }
