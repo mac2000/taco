@@ -1,23 +1,17 @@
 package com.example.taco.controllers;
 
 import com.codeborne.selenide.WebDriverRunner;
-import com.example.taco.Taco;
 import com.example.taco.constants.URL;
-import com.example.taco.services.TacoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.List;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -28,8 +22,8 @@ class HomeControllerTest {
     @Autowired
     private WebDriver webDriver;
 
-    @MockBean
-    private TacoService tacoService;
+    //@MockBean
+    //private TacoService tacoService;
 
     @BeforeEach
     public void setup() {
@@ -38,14 +32,14 @@ class HomeControllerTest {
 
     @Test
     void shouldRenderHomePage() {
-        when(tacoService.findAll()).thenReturn(List.of(
+        /*when(tacoService.findAll()).thenReturn(List.of(
                 Taco.builder().id("abcr").name("All Butter Croissant").price(75).build(),
                 Taco.builder().id("ccr").name("Chocolate Croissant").price(95).build(),
                 Taco.builder().id("b").name("Fresh Baguette").price(160).build(),
                 Taco.builder().id("rv").name("Red Velvet").price(395).build(),
                 Taco.builder().id("vs").name("Victoria Sponge").price(545).build(),
                 Taco.builder().id("cc").name("Carrot Cake").price(345).build()
-        ));
+        ));*/
 
         open("http://localhost/");
 
