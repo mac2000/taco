@@ -15,6 +15,8 @@ Few minor differences here:
 
 Instead of htmlunit going to use selenide which gives way better experience.
 
+Instead of flyway going to use liquibase because of its database agnostic migrations.
+
 # TODO
 
 ## Rendering ContainerTag
