@@ -3,7 +3,7 @@ package com.example.taco.controllers;
 import com.codeborne.selenide.WebDriverRunner;
 import com.example.taco.Taco;
 import com.example.taco.constants.URL;
-import com.example.taco.services.interfaces.TacoServiceInterface;
+import com.example.taco.services.TacoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +29,7 @@ class HomeControllerTest {
     private WebDriver webDriver;
 
     @MockBean
-    private TacoServiceInterface tacoService;
+    private TacoService tacoService;
 
     @BeforeEach
     public void setup() {
