@@ -1,9 +1,13 @@
 package com.example.taco.views;
 
+import com.example.taco.Taco;
 import com.example.taco.annotations.View;
 import com.example.taco.views.components.Layout;
 import com.example.taco.views.interfaces.GenericView;
 import com.example.taco.views.models.HomePageViewModel;
+import j2html.tags.ContainerTag;
+
+import java.util.List;
 
 import static com.example.taco.views.components.atoms.Bootstrap.row;
 import static j2html.TagCreator.*;
@@ -54,26 +58,32 @@ public class HomePageView implements GenericView<HomePageViewModel> {
                                         span("Next").withClass("sr-only")
                                 )
                         ),
-                        row(
-                                each(model.getTacos(), taco -> div().withClass("col-lg-4 col-md-6 mb-4").with(
-                                        div().withClass("card h-100").with(
-                                                a().withHref("#").with(
-                                                        img().withClass("card-img-top").withAlt("").withSrc("http://placehold.it/700x400")
-                                                ),
-                                                div().withClass("card-body").with(
-                                                        h4().withClass("card-title").with(
-                                                                a(taco.getName()).withHref("#")
-                                                        ),
-                                                        h5("£" + (taco.getPrice() / 100)),
-                                                        p("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!").withClass("card-text")
-
-                                                ),
-                                                div().withClass("card-footer").with(
-                                                        small("⭐ ⭐ ⭐ ⭐ ⭐").withClass("text-muted")
-                                                )
-                                        )
-                                ))
-                        )
+                        productList(model.getTacos())
                 ));
+    }
+
+    private ContainerTag productList(List<Taco> tacos) {
+        return row(each(tacos, this::productItem));
+    }
+
+    private ContainerTag productItem(Taco taco) {
+        return div().withClass("col-lg-4 col-md-6 mb-4").with(
+                div().withClass("card h-100").with(
+                        a().withHref("#").with(
+                                img().withClass("card-img-top").withAlt("").withSrc("http://placehold.it/700x400")
+                        ),
+                        div().withClass("card-body").with(
+                                h4().withClass("card-title").with(
+                                        a(taco.getName()).withHref("#")
+                                ),
+                                h5("£" + (taco.getPrice() / 100)),
+                                p("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!").withClass("card-text")
+
+                        ),
+                        div().withClass("card-footer").with(
+                                small("⭐ ⭐ ⭐ ⭐ ⭐").withClass("text-muted")
+                        )
+                )
+        );
     }
 }
