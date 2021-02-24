@@ -7,7 +7,7 @@ databaseChangeLog:
             tableName: taco
             columns:
               - column:
-                  name: id
+                  name: sku
                   type: varchar(10)
                   constraints:
                     primaryKey: true
@@ -31,7 +31,7 @@ databaseChangeLog:
             tableName: taco
             columns:
               - column:
-                  name: id
+                  name: sku
                   value: abcr
               - column:
                   name: name
@@ -43,7 +43,7 @@ databaseChangeLog:
             tableName: taco
             columns:
               - column:
-                  name: id
+                  name: sku
                   value: ccr
               - column:
                   name: name
@@ -55,7 +55,7 @@ databaseChangeLog:
             tableName: taco
             columns:
               - column:
-                  name: id
+                  name: sku
                   value: b
               - column:
                   name: name
@@ -67,7 +67,7 @@ databaseChangeLog:
             tableName: taco
             columns:
               - column:
-                  name: id
+                  name: sku
                   value: rv
               - column:
                   name: name
@@ -79,7 +79,7 @@ databaseChangeLog:
             tableName: taco
             columns:
               - column:
-                  name: id
+                  name: sku
                   value: vs
               - column:
                   name: name
@@ -91,7 +91,7 @@ databaseChangeLog:
             tableName: taco
             columns:
               - column:
-                  name: id
+                  name: sku
                   value: cc
               - column:
                   name: name
@@ -102,4 +102,4 @@ databaseChangeLog:
       rollback:
         - delete:
             tableName: taco
-            where: id in ('abcr', 'ccr', 'b', 'rv', 'vs', 'cc')
+            where: sku in ('abcr', 'ccr', 'b', 'rv', 'vs', 'cc')

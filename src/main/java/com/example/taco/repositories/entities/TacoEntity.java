@@ -11,7 +11,8 @@ import javax.persistence.Table;
 @Data
 public class TacoEntity {
     @Id
-    private String id;
+    private String sku;
+
     private String name;
     private int price;
 }

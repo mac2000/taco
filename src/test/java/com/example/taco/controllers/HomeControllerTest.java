@@ -33,12 +33,12 @@ class HomeControllerTest {
     @Test
     void shouldRenderHomePage() {
         /*when(tacoService.findAll()).thenReturn(List.of(
-                Taco.builder().id("abcr").name("All Butter Croissant").price(75).build(),
-                Taco.builder().id("ccr").name("Chocolate Croissant").price(95).build(),
-                Taco.builder().id("b").name("Fresh Baguette").price(160).build(),
-                Taco.builder().id("rv").name("Red Velvet").price(395).build(),
-                Taco.builder().id("vs").name("Victoria Sponge").price(545).build(),
-                Taco.builder().id("cc").name("Carrot Cake").price(345).build()
+                Taco.builder().sku("abcr").name("All Butter Croissant").price(75).build(),
+                Taco.builder().sku("ccr").name("Chocolate Croissant").price(95).build(),
+                Taco.builder().sku("b").name("Fresh Baguette").price(160).build(),
+                Taco.builder().sku("rv").name("Red Velvet").price(395).build(),
+                Taco.builder().sku("vs").name("Victoria Sponge").price(545).build(),
+                Taco.builder().sku("cc").name("Carrot Cake").price(345).build()
         ));*/
 
         open("http://localhost/");
