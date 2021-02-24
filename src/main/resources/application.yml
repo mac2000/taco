@@ -4,3 +4,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+
+#  # docker run -it --rm --name db -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    username: postgres
+#    password: postgres
