@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 class TacoEntityTest {
     @Autowired
-    TestEntityManager em;
+    private TestEntityManager em;
 
     @Test
     void shouldHaveCorrectEqualsAndHashCode() {
@@ -18,14 +18,14 @@ class TacoEntityTest {
         // arrange
         String id1 = "id1";
         String id2 = "id2";
-        TacoEntity e1 = buildTaco(id1, "taco1", 110);
-        TacoEntity e2 = buildTaco(id2, "taco2", 220);
+        TacoEntity e1 = TacoEntity.builder().sku(id1).name("taco1").price(110).build();
+        TacoEntity e2 = TacoEntity.builder().sku(id2).name("taco2").price(220).build();
         em.persistAndFlush(e1);
         em.persistAndFlush(e2);
 
         // 2 transient entities need to be NOT equal
-        e1 = buildTaco(id1, "taco1", 110);
-        e2 = buildTaco(id2, "taco2", 220);
+        e1 = TacoEntity.builder().sku(id1).name("taco1").price(110).build();
+        e2 = TacoEntity.builder().sku(id2).name("taco2").price(220).build();
         assertThat(e1).isNotEqualTo(e2);
 
 
@@ -47,13 +47,5 @@ class TacoEntityTest {
         // a re-attached and a managed entity object that represent the same record need to be equal
         e1 = em.merge(e1);
         assertThat(e1).isEqualTo(e2);
-    }
-
-    private TacoEntity buildTaco(String sku, String name, int price) {
-        TacoEntity entity = new TacoEntity();
-        entity.setSku(sku);
-        entity.setName(name);
-        entity.setPrice(price);
-        return entity;
     }
 }
