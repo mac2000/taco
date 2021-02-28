@@ -14,7 +14,9 @@ public class BasketController {
     @PostMapping(URL.BASKET)
     public String addTacoToTheBasket(String sku, @CookieValue(value = "basket", defaultValue = "") String basket, HttpServletResponse response) {
         basket = StringUtils.hasLength(basket) ? basket + "|" + sku : sku;
-        response.addCookie(new Cookie("basket", basket));
+        Cookie cookie = new Cookie("basket", basket);
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
         return "redirect:/";
     }
 }
