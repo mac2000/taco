@@ -17,6 +17,10 @@ Instead of htmlunit going to use selenide which gives way better experience.
 
 Instead of flyway going to use liquibase because of its database agnostic migrations.
 
+# Adding a Basket Feature
+
+Instead of dealing with basket storage going to use cookies as transport
+
 # TODO
 
 ## Rendering ContainerTag
