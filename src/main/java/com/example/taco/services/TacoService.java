@@ -22,4 +22,9 @@ public class TacoService {
         return mapper.map(repository.findAll(), new TypeToken<List<Taco>>() {
         }.getType());
     }
+
+    public List<Taco> findAllById(Iterable<String> ids) {
+        return mapper.map(repository.findAllById(ids), new TypeToken<List<Taco>>() {
+        }.getType());
+    }
 }
