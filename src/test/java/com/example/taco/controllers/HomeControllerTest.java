@@ -74,4 +74,25 @@ class HomeControllerTest {
 
         $(".navbar .nav-item.active a.nav-link").shouldHave(text("Home"));
     }
+
+    @Test
+    void shouldHaveAddButtonsOnTacos() {
+        open("http://localhost/");
+
+        $$(".card .card-body .card-title a").findBy(text("All Butter Croissant")).closest(".card").find(".card-footer .btn").shouldHave(text("Add"));
+    }
+
+    @Test
+    void shouldDisplayBasketItemsLink() {
+        open("http://localhost/");
+
+        $$(".navbar a.nav-link").findBy(attribute("href", "http://localhost" + URL.BASKET)).shouldNot(exist);
+
+        $$(".card .card-body .card-title a").findBy(text("All Butter Croissant")).closest(".card").find(".card-footer .btn").click();
+        $$(".navbar a.nav-link").filterBy(attribute("href", "http://localhost" + URL.BASKET)).findBy(text("Basket: 1 item(s)")).should(exist);
+
+        $$(".card .card-body .card-title a").findBy(text("All Butter Croissant")).closest(".card").find(".card-footer .btn").click();
+        $$(".navbar a.nav-link").filterBy(attribute("href", "http://localhost" + URL.BASKET)).findBy(text("Basket: 2 item(s)")).should(exist);
+
+    }
 }

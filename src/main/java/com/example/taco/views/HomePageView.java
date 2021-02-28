@@ -2,6 +2,8 @@ package com.example.taco.views;
 
 import com.example.taco.Taco;
 import com.example.taco.annotations.View;
+import com.example.taco.constants.URL;
+import com.example.taco.views.components.Carousel;
 import com.example.taco.views.components.Layout;
 import com.example.taco.views.interfaces.GenericView;
 import com.example.taco.views.models.HomePageViewModel;
@@ -15,9 +17,11 @@ import static j2html.TagCreator.*;
 @View
 public class HomePageView implements GenericView<HomePageViewModel> {
     private final Layout layout;
+    private final Carousel carousel;
 
-    public HomePageView(Layout layout) {
+    public HomePageView(Layout layout, Carousel carousel) {
         this.layout = layout;
+        this.carousel = carousel;
     }
 
     @Override
@@ -26,40 +30,19 @@ public class HomePageView implements GenericView<HomePageViewModel> {
                 div(
                         h1("Taco Factory").withClass("my-4"),
                         div().withClass("list-group").with(
-                                a("Category 1").withClass("list-group-item").withHref("#"),
-                                a("Category 2").withClass("list-group-item").withHref("#"),
-                                a("Category 3").withClass("list-group-item").withHref("#")
+                                listGroupItem("Category 1"),
+                                listGroupItem("Category 2"),
+                                listGroupItem("Category 3")
                         )
                 ),
                 div(
-                        div().withId("carouselExampleIndicators").withClass("carousel slide my-4").attr("data-ride", "carousel").with(
-                                ol().withClass("carousel-indicators").with(
-                                        li().attr("data-target", "#carouselExampleIndicators").attr("data-slide-to", "0").withClass("active"),
-                                        li().attr("data-target", "#carouselExampleIndicators").attr("data-slide-to", "1"),
-                                        li().attr("data-target", "#carouselExampleIndicators").attr("data-slide-to", "2")
-                                ),
-                                div().withClass("carousel-inner").withRole("listbox").with(
-                                        div().withClass("carousel-item active").with(
-                                                img().withClass("d-block img-fluid").withAlt("First slide").withSrc("http://placehold.it/900x350")
-                                        ),
-                                        div().withClass("carousel-item").with(
-                                                img().withClass("d-block img-fluid").withAlt("Second slide").withSrc("http://placehold.it/900x350")
-                                        ),
-                                        div().withClass("carousel-item").with(
-                                                img().withClass("d-block img-fluid").withAlt("Third slide").withSrc("http://placehold.it/900x350")
-                                        )
-                                ),
-                                a().withClass("carousel-control-prev").attr("data-slide", "prev").withHref("#carouselExampleIndicators").withRole("button").with(
-                                        span().withClass("carousel-control-prev-icon").attr("aria-hidden", "true"),
-                                        span("Previous").withClass("sr-only")
-                                ),
-                                a().withClass("carousel-control-next").attr("data-slide", "next").withHref("#carouselExampleIndicators").withRole("button").with(
-                                        span().withClass("carousel-control-next-icon").attr("aria-hidden", "true"),
-                                        span("Next").withClass("sr-only")
-                                )
-                        ),
+                        carousel.carousel(),
                         productList(model.getTacos())
                 ));
+    }
+
+    private ContainerTag listGroupItem(String title) {
+        return a(title).withClass("list-group-item").withHref("#");
     }
 
     private ContainerTag productList(List<Taco> tacos) {
@@ -80,8 +63,12 @@ public class HomePageView implements GenericView<HomePageViewModel> {
                                 p("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!").withClass("card-text")
 
                         ),
-                        div().withClass("card-footer").with(
-                                small("⭐ ⭐ ⭐ ⭐ ⭐").withClass("text-muted")
+                        div().withClass("card-footer d-flex justify-content-between align-items-center").with(
+                                small("⭐ ⭐ ⭐ ⭐ ⭐").withClass("text-muted"),
+                                form().withAction(URL.BASKET).withMethod("post").with(
+                                        input().withType("hidden").withName("sku").withValue(taco.getSku()),
+                                        button("Add").withClass("btn btn-primary").withType("submit")
+                                )
                         )
                 )
         );

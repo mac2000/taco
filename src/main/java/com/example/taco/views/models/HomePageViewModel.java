@@ -13,6 +13,8 @@ import java.util.List;
 public class HomePageViewModel implements LayoutData {
     private List<Taco> tacos;
 
+    private int numberOfBasketItems;
+
     @Override
     public String getHeadTitle() {
         return "Home - Taco Factory";

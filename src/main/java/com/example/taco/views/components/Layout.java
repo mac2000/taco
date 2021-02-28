@@ -51,8 +51,8 @@ public class Layout {
         );
     }
 
-    private static ContainerTag header(WithCurrentUrl withCurrentUrl) {
-        log.info("building header for {} == {}", withCurrentUrl.getCurrentUrl(), URL.HOME);
+    private static ContainerTag header(LayoutData model) {
+        log.info("building header for {} == {}", model.getCurrentUrl(), URL.HOME);
         return nav().withClass("navbar navbar-expand-lg navbar-dark bg-dark fixed-top").with(
                 container(
                         a("Taco Factory").withClass("navbar-brand").withHref(URL.HOME),
@@ -61,15 +61,20 @@ public class Layout {
                         ),
                         div().withId("navbarResponsive").withClass("collapse navbar-collapse").with(
                                 ul().withClass("navbar-nav ml-auto").with(
-                                        li().withClasses("nav-item", iff(withCurrentUrl.getCurrentUrl().equals(URL.HOME), "active")).with(
-                                                a("Home").withClass("nav-link").withHref(URL.HOME)
+                                        iff(model.getNumberOfBasketItems() > 0,
+                                                navItem(model, URL.BASKET, "Basket: " + model.getNumberOfBasketItems() + " item(s)")
                                         ),
-                                        li().withClasses("nav-item", iff(withCurrentUrl.getCurrentUrl().equals(URL.DESIGN), "active")).with(
-                                                a("Design").withClass("nav-link").withHref(URL.DESIGN)
-                                        )
+                                        navItem(model, URL.HOME, "Home"),
+                                        navItem(model, URL.DESIGN, "Design")
                                 )
                         )
                 )
+        );
+    }
+
+    private static ContainerTag navItem(WithCurrentUrl withCurrentUrl, String url, String title) {
+        return li().withClasses("nav-item", iff(withCurrentUrl.getCurrentUrl().equals(url), "active")).with(
+                a(title).withClass("nav-link").withHref(url)
         );
     }
 

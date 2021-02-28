@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 public class DesignPageViewModel implements LayoutData {
     private List<Ingredient> ingredients;
 
+    private int numberOfBasketItems;
+
     @Override
     public String getHeadTitle() {
         return "Design - Taco Factory";
