@@ -1,5 +1,7 @@
 # Taco Live Project
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mac2000_taco&metric=alert_status)](https://sonarcloud.io/dashboard?id=mac2000_taco)
+
 Trying to implement live project in TDD manner
 
 [![video](https://img.youtube.com/vi/zLB0UnW3688/0.jpg)](https://www.youtube.com/watch?v=zLB0UnW3688)
