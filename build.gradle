@@ -37,7 +37,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	testCompile 'org.seleniumhq.selenium:htmlunit-driver:2.47.1'
+	testCompile 'org.seleniumhq.selenium:htmlunit-driver:2.49.1'
 	testCompile 'org.seleniumhq.selenium:selenium-java:3.141.59'
 	testImplementation 'com.codeborne:selenide:5.19.0'
 }
