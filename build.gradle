@@ -39,7 +39,7 @@ dependencies {
 
 	testCompile 'org.seleniumhq.selenium:htmlunit-driver:2.47.1'
 	testCompile 'org.seleniumhq.selenium:selenium-java:3.141.59'
-	testImplementation 'com.codeborne:selenide:5.19.0'
+	testImplementation 'com.codeborne:selenide:6.0.2'
 }
 
 test {
